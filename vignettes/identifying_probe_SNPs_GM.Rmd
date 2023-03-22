@@ -145,7 +145,7 @@ CpG_SNP_intersection_fst <- CpG_SNP_intersection_fst %>% add_column(beta_geno_di
 
 ```{r, fig.show='hold', echo=F}
 fst_lims = range(CpG_SNP_intersection_fst$fst)
-fst_grid = c(0.3,0.4,0.5,0.6,0.7,0.8)
+fst_grid = seq(0.3,0.8,0.1)
 model <- lm(beta_geno_diff ~ fst, data=CpG_SNP_intersection_fst)
 preds = predict(model, newdata= list(fst=fst_grid), se=TRUE)
 se_bands = cbind("upper" = preds$fit + (2*preds$se.fit), 
