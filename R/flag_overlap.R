@@ -17,7 +17,7 @@ flag.overlap <- function(probe_bed, SNP_bed) {
   overlaps <- GenomicRanges::findOverlaps(query=query, subject=subject)
   probe_SNP_info <- as.data.frame(matrix(nrow=length(overlaps), ncol=12))
   colnames(probe_SNP_info) <- c("chr", "SNP_start", "SNP_end", "SNP_id", "SNP_ref", "SNP_alt", "CpG_start", "CpG_end", "CpG_id", "CpG_strand", "CpG_type", "CpG_pos")
-  probe_SNP_info[,c("chr", "SNP_start", "SNP_end", "SNP_id", "SNP_ref", "SNP_alt")] <- SNP_bed[queryHits(overlaps),]
+  probe_SNP_info[,c("chr", "SNP_start", "SNP_end", "SNP_id", "SNP_ref", "SNP_alt")] <- SNP_bed[GenomicRanges::queryHits(overlaps),]
   probe_SNP_info[,c("CpG_start", "CpG_end", "CpG_id", "CpG_strand", "CpG_type", "CpG_pos")] <- probe_bed[subjectHits(overlaps), c("start", "end", "CpG_id", "strand", "type", "CpG_pos")]
   # Calculate SNP-CpG distance
   probe_SNP_info$SNP_CpG_distance <- probe_SNP_info$SNP_end - probe_SNP_info$CpG_pos
