@@ -41,6 +41,9 @@ Additional columns (6 and beyond) can also be included containing metadata, such
 
 ```{r, echo=FALSE, results='asis'}
 library(probeSNPffer)
+library(tibble)
+library(dplyr)
+library(ggplot2)
 knitr::kable(head(CpG_info,5)) # how do we left-align this?
 ```
 

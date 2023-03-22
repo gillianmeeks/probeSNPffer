@@ -8,11 +8,8 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
-    dplyr,
     GenomicRanges,
-    ggplot2,
     S4Vectors,
-    tibble
 Depends: 
     R (>= 2.10)
 LazyData: true
