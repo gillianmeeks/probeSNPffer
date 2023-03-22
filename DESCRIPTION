@@ -5,11 +5,11 @@ Authors@R:
     c(person(given = "Shyamalika", 
             family = "Gopalan", 
             email = "shyamie@gmail.com", 
-            role = "aut"),
+            role = "ctb"),
     person(given = "Gillian", 
            family = "Meeks", 
            email = "glmeeks@ucdavis.edu, 
-           role = "aut"))
+           role = "ctb"))
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
