@@ -9,9 +9,9 @@ flag.overlap <- function(probe_bed, SNP_bed) {
     SNP_bed[,1] <- gsub("chr", "", SNP_bed[,1], ignore.case=T)
   }
   # Convert bed files to GRange objects
-  subject <- GenomicRanges::GRanges(seqnames=probe_bed$chr, ranges=IRanges(start=probe_bed$start , end=probe_bed$end))
+  subject <- GenomicRanges::GRanges(seqnames=probe_bed$chr, ranges=IRanges::IRanges(start=probe_bed$start , end=probe_bed$end))
   #changed SNP range to only be one base as GenomicRanges uses closed intervals
-  query <- GenomicRanges::GRanges(seqnames=SNP_bed[,1], ranges=IRanges(start=SNP_bed[,3], end=SNP_bed[,3]))
+  query <- GenomicRanges::GRanges(seqnames=SNP_bed[,1], ranges=IRanges::IRanges(start=SNP_bed[,3], end=SNP_bed[,3]))
   # Find overlaps between SNPs and probes
   message("Calculating overlap between probe list and SNP list...")
   overlaps <- GenomicRanges::findOverlaps(query=query, subject=subject)
