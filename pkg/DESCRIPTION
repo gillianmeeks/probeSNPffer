@@ -1,7 +1,7 @@
 Package: probeSNPffer
 Title: Idenitifies SNPs overlapping methylation microarray probe sequences from population-specific BED file 
 Version: 1.0
-Authors@R: c(person("Shyamalika", "Gopalan", email = "shyamie@gmail.com", role="aut", person("Gillian", "Meeks", email = "glmeeks@ucdavis.edu", role=c("aut","cre")))
+Authors@R: c(person("Shyamalika", "Gopalan", email = "shyamie@gmail.com", role="aut"), person("Gillian", "Meeks", email = "glmeeks@ucdavis.edu", role=c("aut","cre")))
 Description: R package to identify methylation microarray probes whose sequences contain a SNP present in your population-specific BED file.
 License: `use_mit_license()`
 Encoding: UTF-8
