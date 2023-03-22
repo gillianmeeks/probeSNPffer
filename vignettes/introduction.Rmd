@@ -1,5 +1,5 @@
 ---
-title: "Identifying probe SNPs in DNA methylation array data""
+title: "Identifying probe SNPs in DNA methylation array data"
 output: rmarkdown::html_vignette
 
 author: "Gillian Meeks and Shyamalika Gopalan"
