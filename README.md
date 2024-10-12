@@ -10,8 +10,6 @@ if (!require("BiocManager"))
     install.packages("BiocManager")
 BiocManager::install("probeSNPffer")
 
-
-devtools::install_github("gillianmeeks/probeSNPffer", build_vignettes = TRUE)
 ```
 View vignette html once in R:
 
