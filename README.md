@@ -6,11 +6,17 @@ Authors: Gillian Meeks and Shyamalika Gopalan
 
 Install package:
 ```
+if (!require("BiocManager"))
+    install.packages("BiocManager")
+BiocManager::install("probeSNPffer")
+
+ or 
 devtools::install_github("gillianmeeks/probeSNPffer", build_vignettes = TRUE)
 ```
 View vignette html once in R:
 
 ```
+library(probeSNPffer)
 browseVignettes(package = "probeSNPffer")
 ```
 
