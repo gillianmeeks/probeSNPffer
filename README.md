@@ -9,7 +9,6 @@ Install package:
 if (!require("BiocManager"))
     install.packages("BiocManager")
 BiocManager::install("probeSNPffer")
-
 ```
 View vignette html once in R:
 
