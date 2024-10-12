@@ -2,10 +2,12 @@
 % Please edit documentation in R/check_for_cc_switch.R
 \name{check.for.cc.switch}
 \alias{check.for.cc.switch}
-\title{test documentation for cc.switch}
+\title{check.for.cc.switch}
 \usage{
-check.for.cc.switch(DAT)
+  probe_SNP_info$col_chan_switching <- apply(X=probe_SNP_info, MARGIN=1, FUN=check.for.cc.switch)
+
 }
 \description{
-test documentation for cc.switch
+Internal function to CpG_SNP_intersection which checks for color-channel switching SNPs at the single base extension position for type 1 probes. probe_SNP_info is an intermediate dataframe within the flag.overlap function that contains the ref allele as column 5, alt allele as column 6, strand as column 10, and probe type as column 11, and distance between the target cytosine and SNP as column 13.
+
 }

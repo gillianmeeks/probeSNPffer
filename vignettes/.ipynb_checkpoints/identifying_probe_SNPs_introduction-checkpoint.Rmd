@@ -1,0 +1,180 @@
+---
+title: "Identifying probe SNPs in DNA methylation array data"
+author: "Gillian Meeks and Shyamalika Gopalan"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Identifying probe SNPs in DNA methylation array data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width=8, fig.height=7
+)
+```
+#Installation
+The `r Biocpkg("GenomicRanges")` package is available at [https://bioconductor.org](https://bioconductor.org) and can be
+installed via `BiocManager::install`:
+
+```{r BiocManager, eval=FALSE}
+if (!require("BiocManager"))
+    install.packages("BiocManager")
+BiocManager::install("probeSNPffer")
+library(probeSNPffer)
+```
+
+#Introduction
+This vignette demonstrates how to identify CpG probes in a DNA methylation array dataset that overlap with known SNPs, and calculate important metrics related to these probes. Our functions do this in two steps:
+
+  - First, `extract.probe.regions()` takes positional, strand, and technology type information about a set of CpG probes (i.e. derived from an Illumina DNA methylation array manifest) and returns the genomic coordinates of the entire probe region in [BED format](https://genome.ucsc.edu/FAQ/FAQformat.html).
+  
+  - Second, `flag.overlap()` takes the BED file generated in the previous step, along with a BED file containing SNPs to be queried, and returns their intersection.
+
+Here, we show how these functions can be used for quality control using examples from the results of [Li et al. 2022](https://www.nature.com/articles/s42003-022-03353-5)^[Li, B., Aouizerat, B. E., Cheng, Y., Anastos, K., Justice, A. C., Zhao, H. & Xu, K. Incorporating local ancestry improves identification of ancestry-associated methylation signatures and meQTLs in African Americans. Commun. Biol. 5, 401 (2022).].
+
+## Extracting genomic regions corresponding to CpG probs
+
+We start with a data frame containing information about the genomic position of our CpG sites of interest, as well as their strand and assay technology. This information is available in the [manifest](https://support.illumina.com/array/array_kits/infinium-methylationepic-beadchip-kit/downloads.html) that accompanies the array platform used. There are also R packages for the most common DNA methylation arrays.
+
+Our function require this data frame to have these exact column names in this exact order in order to avoid ambiguity:
+
+1. **'CpG_id'** (e.g. 'cg00916680')
+2. **'chr'** (chromosome, eg. 'chrX' or 'X')
+3. **'CpG_position'** (base pair position on the corresponding chromosome, eg. 152529487)
+4. **'strand'** (i.e. '+' or 'F' in the case of the forward strand; '-' or 'R' in case of the reverse strand)
+5. **'type'** (i.e. 'I' or 1 in case of Type 1 probes; 'II' or 2 in the case of Type 2 probes)
+
+Additional columns (6 and beyond) can also be included containing metadata, such as, in our case, the difference in ancestry-specific effect size (**'beta_diff'**). `CpG info` contains information for the 135 CpG probes corresponding to the ancestry-specific meQTL identified by Li et al., and reported in their Supplementary Data 8. The largest effect size difference (beta_diff) was taken for probes associated with multiple ancestry-specific meQTL. This data frame is previewed below:
+
+```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+library(probeSNPffer)
+library(tibble)
+library(dplyr)
+library(ggplot2)
+knitr::kable(head(CpG_info,5)) 
+```
+
+We can easily extract the genomic coordinates for the probes corresponding to these 135 CpG sites using the following code:
+
+```{r, fig.show='hold'}
+CpG_probe_bed <- extract.probe.regions(manifest_anno_object = CpG_info)
+```
+
+This results in a BED-formatted file that can be used for the next step:
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(CpG_probe_bed, 5))
+```
+
+## Identifying CpG probes that overlap with SNPs
+
+Now, we want to identify SNPs that fall within the probe. For this vignette, we are particularly interested in SNPs that are extremely differentiated between populations of European and West African genetic ancestry. The object `SNP_bed` is a data frame containing BED-formatted information for SNPs with Fst > .3 between African and European super-populations, as ascertained in the [1000 Genomes panel](https://www.internationalgenome.org/category/phase-3/). This data frame looks like:
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(SNP_bed, 9)) 
+```
+
+As you can see, this BED file contains the genomic locations of our SNP set, as well as rsID and population-specific allele frequency information. The BED file only needs to contain the SNP's chromosome and BED formatted positions (must be columns 1,2,3) and REF, ALT alleles (must be columns 5,6). Using this and the CpG probe BED file we generated in the previous step, we can extract all instances of overlap between SNPs and CpG probes using the following line of code. This function also checks for color-channel switching SNPs at the single base extension (SBE) position of Type 1 probes and will mark them as TRUE if the REF/ALT pair will bias measurements or FALSE if they do not bias measurements:
+
+```{r, fig.show='hold'}
+CpG_SNP_intersection <- flag.overlap(probe_bed = CpG_probe_bed, SNP_bed = SNP_bed[,1:6])
+CpG_SNP_intersection <- CpG_SNP_intersection[CpG_SNP_intersection$col_chan_switching!= TRUE,]
+```
+
+
+```{r, echo=F, fig.show='hold', message=F}
+#intersect
+SNP_bed <- SNP_bed[order(SNP_bed$rsid),]
+CpG_SNP_intersection <- CpG_SNP_intersection[order(CpG_SNP_intersection$SNP_id),]
+CpG_SNP_intersection$fst <- SNP_bed[match(CpG_SNP_intersection$SNP_id, SNP_bed$rsid), "WEIR_AND_COCKERHAM_FST"]
+CpG_SNP_intersection$SNP_CpG_distance <- abs(CpG_SNP_intersection$SNP_CpG_distance)
+knitr::kable(head(CpG_SNP_intersection)) 
+```
+
+
+```{r, echo=F, fig.show='hold', message=F}
+#take the closest SNP
+CpG_SNP_intersection_dist  <- CpG_SNP_intersection %>% group_by(CpG_id) %>% arrange(SNP_CpG_distance)%>% slice(1)
+#subset CpG_info to the probes with a SNP
+CpG_info_ <- CpG_info[CpG_info$CpG_id %in% CpG_SNP_intersection_dist$CpG_id,]
+CpG_info_ <- CpG_info_[order(CpG_info_$CpG_id),]
+CpG_SNP_intersection_dist <- CpG_SNP_intersection_dist[order(CpG_SNP_intersection_dist$CpG_id),]
+#grab the beta_geno_diff from CpG_info
+beta_geno_diff <- CpG_info_[match(CpG_SNP_intersection_dist$CpG_id, CpG_info_$CpG_id), "beta_diff"]
+#check order
+#all.equal(CpG_SNP_intersection_dist$CpG_id, CpG_info_$CpG_id)
+CpG_SNP_intersection_dist <- CpG_SNP_intersection_dist %>% add_column(beta_geno_diff)
+
+```
+
+
+## Example Analysis of CpG probe-SNP overlap: Distance Effects
+
+Now we have the data we need to evaluate the extent to which these SNPs in CpG probe sequences are biasing the results of the local ancestry-specific meQTL analysis in Li et al. Here we plot the impact of probe SNP distance on delta effect size for this subset of SNPs.
+
+```{r, fig.show='hold', echo=F}
+dist_lims = range(CpG_SNP_intersection_dist$SNP_CpG_distance)
+dist_grid = seq(from = min(dist_lims), to=max(dist_lims))
+model <- lm(beta_geno_diff ~ SNP_CpG_distance, data=CpG_SNP_intersection_dist)
+preds = predict(model, newdata= list(SNP_CpG_distance=dist_grid), se=TRUE)
+se_bands = cbind("upper" = preds$fit + (2*preds$se.fit), 
+                 "lower" = preds$fit - (2*preds$se.fit))
+sum <- summary(model)
+sum_coeff <- sum$coefficients
+ggplot() +
+  geom_point(data = CpG_SNP_intersection_dist, aes(x = SNP_CpG_distance, y = beta_geno_diff), size=1) +
+  geom_line(aes(x = dist_grid, y = preds$fit), color = "#0000FF") +
+  geom_ribbon(aes(x = dist_grid, ymin = se_bands[,"lower"], ymax = se_bands[,"upper"]), alpha = 0.3)  +   xlim(dist_lims) + xlab("Distance of SNP to Cytosine") + ylab('Delta Effect Size') +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), plot.title=element_text(size=29), 
+        legend.position = "none") + scale_y_continuous(breaks=c(0,1,2,3,4,5,6)) + annotate("text", x=20, y=3, label=paste0("R^2 = ", round(sum$r.squared,2), "\np-value = ",round(sum_coeff[2,4],4)), size=8)
+```
+
+
+## Fst effects 
+
+Here we also plot the impact of probe SNP Fst on delta effect size, using the highest Fst SNP for probes with multiple SNPs.
+
+```{r, fig.show='hold', echo=F}
+#take the highest fst snp for probes with multiple SNPs
+CpG_SNP_intersection_fst  <- CpG_SNP_intersection %>% group_by(CpG_id) %>% arrange(desc(fst)) %>% slice(1)
+CpG_info_ <- CpG_info[CpG_info$CpG_id %in% CpG_SNP_intersection_fst$CpG_id,]
+CpG_info_ <- CpG_info_[order(CpG_info_$CpG_id),]
+CpG_SNP_intersection_fst <- CpG_SNP_intersection_fst[order(CpG_SNP_intersection_fst$CpG_id),]
+#take beta_geno_diff
+beta_geno_diff <- CpG_info_[match(CpG_info_$CpG_id, CpG_SNP_intersection_fst$CpG_id), "beta_diff"]
+#check order
+#all.equal(CpG_SNP_intersection_dist$CpG_id, CpG_info_$CpG_id)
+CpG_SNP_intersection_fst <- CpG_SNP_intersection_fst %>% add_column(beta_geno_diff)
+```
+
+
+```{r, fig.show='hold', echo=F}
+fst_lims = range(CpG_SNP_intersection_fst$fst)
+fst_grid = seq(0.3,0.8,0.1)
+model <- lm(beta_geno_diff ~ fst, data=CpG_SNP_intersection_fst)
+preds = predict(model, newdata= list(fst=fst_grid), se=TRUE)
+se_bands = cbind("upper" = preds$fit + (2*preds$se.fit), 
+                 "lower" = preds$fit - (2*preds$se.fit))
+sum <- summary(model)
+sum_coeff <- sum$coefficients
+ggplot() +
+  geom_point(data = CpG_SNP_intersection_fst, aes(x = fst, y = beta_geno_diff), size=1) +
+  geom_line(aes(x = fst_grid, y = preds$fit), color = "#0000FF") +
+  geom_ribbon(aes(x = fst_grid, ymin = se_bands[,"lower"], ymax = se_bands[,"upper"]), alpha = 0.3) +     xlim(c(0.3,0.8)) +  xlab("Fst of SNP") + ylab('Delta Effect Size')+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), plot.title=element_text(size=29),
+        legend.position = "none") + scale_y_continuous(breaks=c(0,1,2,3,4,5,6)) + annotate("text", x=.5, y=4.5, label=paste0("R^2 = ", round(sum$r.squared,2), "\np-value = ",round(sum_coeff[2,4],4)), size=8)
+```
+# Session Information
+
+All of the output in this vignette was produced under the following
+conditions:
+
+```{r SessionInfo}
+sessionInfo()
+```
