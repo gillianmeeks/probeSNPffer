@@ -1,4 +1,0 @@
-CpG_info is an example dataframe of 135 CpG probes and their probe information from the Infinium MethylationEPIC manifest https://support.illumina.com/array/array_kits/infinium-methylationepic-beadchip-kit/downloads.html.
-
-SNP_bed is a data frame containing BED-formatted information for SNPs with Fst > .3 between African and European super-populations, as ascertained in the 1000 Genomes panel https://www.internationalgenome.org/category/phase-3/. 
-
