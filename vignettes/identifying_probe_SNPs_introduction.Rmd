@@ -72,7 +72,7 @@ knitr::kable(head(CpG_probe_bed, 5))
 
 ## Identifying CpG probes that overlap with SNPs
 
-Now, we want to identify SNPs that fall within the probe. For this vignette, we are particularly interested in SNPs that are extremely differentiated between populations of European and West African genetic ancestry. The object `SNP_bed` is a data frame containing BED-formatted information for SNPs with Fst > .3 between African and European super-populations, as ascertained in the [1000 Genomes panel](https://www.internationalgenome.org/category/phase-3/). This data frame looks like:
+Now, we want to identify SNPs that fall within the probe. For this vignette, we are particularly interested in SNPs that are extremely differentiated between populations of European and West African genetic ancestry. The object `SNP_bed` is a data frame containing BED-formatted information for an example selection of SNPs with Fst > .3 between African and European super-populations, as ascertained in the [1000 Genomes panel](https://www.internationalgenome.org/category/phase-3/). This data frame looks like:
 
 ```{r, echo=FALSE, results='asis'}
 knitr::kable(head(SNP_bed, 9)) 
