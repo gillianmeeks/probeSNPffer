@@ -5,7 +5,7 @@ Authors: Gillian Meeks and Shyamalika Gopalan
 [![DOI](https://zenodo.org/badge/617581082.svg)](https://zenodo.org/doi/10.5281/zenodo.10067503)
 <img src="https://github.com/user-attachments/assets/0c0f573d-df83-49b8-8e89-5d277a4b8561" alt="probeSNPffer2" width="300"/>
 
-/n Install package:
+Install package:
 ```
 if (!require("BiocManager"))
     install.packages("BiocManager")
