@@ -27,7 +27,7 @@ BiocManager::install("probeSNPffer")
 library(probeSNPffer)
 ```
 
-##Introduction
+## Introduction
 This vignette demonstrates how to identify CpG probes in a DNA methylation array dataset that overlap with known SNPs, and calculate important metrics related to these probes. Our functions do this in two steps:
 
   - First, `extract.probe.regions()` takes positional, strand, and technology type information about a set of CpG probes (i.e. derived from an Illumina DNA methylation array manifest) and returns the genomic coordinates of the entire probe region in [BED format](https://genome.ucsc.edu/FAQ/FAQformat.html).
