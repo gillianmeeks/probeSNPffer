@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 #Installation
-The `r Biocpkg("GenomicRanges")` package is available at [https://bioconductor.org](https://bioconductor.org) and can be
+The `r Biocpkg("probeSNPffer")` package is available at [https://bioconductor.org](https://bioconductor.org) and can be
 installed via `BiocManager::install`:
 
 ```{r BiocManager, eval=FALSE}
@@ -25,8 +25,10 @@ if (!require("BiocManager"))
     install.packages("BiocManager")
 BioCManager::install("GenomicRanges")
 BioCManager::install("S4Vecgtors")
-BiocManager::install("probeSNPffer")
-library(probeSNPffer)
+#BiocManager::install("probeSNPffer")
+library("GenomicRanges")
+library("BiocManager")
+#library(probeSNPffer)
 ```
 
 #Introduction
