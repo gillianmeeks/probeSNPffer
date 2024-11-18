@@ -3,6 +3,7 @@
 R package to identify methylation microarray probes whose sequences contain a SNP, given a BED file of variants. The methylation signal reported at such probes may be unreliable.
 Authors: Gillian Meeks and Shyamalika Gopalan
 [![DOI](https://zenodo.org/badge/617581082.svg)](https://zenodo.org/doi/10.5281/zenodo.10067503)
+![probeSNPffer2](https://github.com/user-attachments/assets/0c0f573d-df83-49b8-8e89-5d277a4b8561)
 
 Install package:
 ```
