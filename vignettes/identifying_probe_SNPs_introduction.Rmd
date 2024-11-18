@@ -23,12 +23,8 @@ installed via `BiocManager::install`:
 ```{r BiocManager, eval=FALSE}
 if (!require("BiocManager"))
     install.packages("BiocManager")
-BioCManager::install("GenomicRanges")
-BioCManager::install("S4Vecgtors")
-#BiocManager::install("probeSNPffer")
-library("GenomicRanges")
-library("BiocManager")
-#library(probeSNPffer)
+BiocManager::install("probeSNPffer")
+library(probeSNPffer)
 ```
 
 #Introduction
