@@ -1,6 +1,7 @@
 # probeSNPffer
 [@hennlab](https://github.com/hennlab)
-R package to identify methylation microarray probes whose sequences contain a SNP, given a BED file of variants. The methylation signal reported at such probes may be unreliable.
+R package to identif![probeSNPffer2](https://github.com/user-attachments/assets/f029c86c-7057-4c99-90dc-f90fe601ff11)
+y methylation microarray probes whose sequences contain a SNP, given a BED file of variants. The methylation signal reported at such probes may be unreliable.
 Authors: Gillian Meeks and Shyamalika Gopalan
 [![DOI](https://zenodo.org/badge/617581082.svg)](https://zenodo.org/doi/10.5281/zenodo.10067503)
 
