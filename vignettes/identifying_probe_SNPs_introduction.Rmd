@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 ## Installation
 probeSNPffer is available at [https://bioconductor.org](https://bioconductor.org) and can be
-installed via `BiocManager::install`:
+installed via:
 
 ```{r BiocManager, eval=FALSE}
 if (!require("BiocManager"))
