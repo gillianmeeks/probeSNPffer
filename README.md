@@ -28,3 +28,4 @@ Diagram of probe coordinate scheme (adapted from: Planterose Jiménez et al. Gen
 Blue bars represent the genomic DNA strands, both forward (+) and reverse (-) and red bars represent the type 1 and type 2 probes and where they hybridize to the genomic strands. The probe regions are marked with reference to the forward strand coordiante of the target Cytosine, i.e. the probe region for Type 1, minus strand targeted probes extends [p-48, p+2].
 
 
+This package was developed for Meeks, G.L., Henn, B.M. & Gopalan, S. Genetic differentiation at probe SNPs leads to spurious results in meQTL discovery. Commun Biol 6, 1295 (2023). https://doi.org/10.1038/s42003-023-05658-5
