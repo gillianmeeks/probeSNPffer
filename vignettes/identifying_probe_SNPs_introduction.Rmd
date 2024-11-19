@@ -82,7 +82,7 @@ As you can see, this BED file contains the genomic locations of our SNP set, as 
 
 ```{r, fig.show='hold'}
 CpG_SNP_intersection <- flag.overlap(probe_bed = CpG_probe_bed, SNP_bed = SNP_bed[,1:6])
-CpG_SNP_intersection <- CpG_SNP_intersection[CpG_SNP_intersection$col_chan_switching!= TRUE,]
+CpG_SNP_intersection <- CpG_SNP_intersection[CpG_SNP_intersection$col_chan_switching!= FALSE,]
 ```
 
 
