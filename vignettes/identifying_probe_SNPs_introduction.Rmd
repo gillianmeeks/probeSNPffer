@@ -55,6 +55,8 @@ library(probeSNPffer)
 library(tibble)
 library(dplyr)
 library(ggplot2)
+data(CpG_info)
+data(SNP_bed)
 knitr::kable(head(CpG_info,5)) 
 ```
 
