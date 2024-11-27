@@ -4,7 +4,7 @@
 \alias{extract.probe.regions}
 \title{Extract BED-formatted CpG probe genomic coordinates}
 \usage{
-extract.probe.regions(manifest_anno_object=CpG_info)
+extract.probe.regions(CpG_info)
 }
 \description{
 Takes positional, strand, and technology information about a set of CpG probes and return genomic coordinates of the probe region in BED format. Manifest object must be a dataframe with the exact columns: 'CpG_id', 'chr',
