@@ -2,10 +2,10 @@
 #' @export
 flag.overlap <- function(probe_bed, SNP_bed) {
   # Recode chromosome information, if necessary
-  if (length(grep("chr", probe_bed[,1], ignore.case=T)) > 0) {
+  if (length(grep("chr", probe_bed[,1], ignore.case=TRUE)) > 0) {
     probe_bed[,1] <- gsub("chr", "", probe_bed[,1], ignore.case=T)
   }
-  if (length(grep("chr", SNP_bed[,1], ignore.case=T)) > 0) {
+  if (length(grep("chr", SNP_bed[,1], ignore.case=TRUE)) > 0) {
     SNP_bed[,1] <- gsub("chr", "", SNP_bed[,1], ignore.case=T)
   }
   # Convert bed files to GRange objects
