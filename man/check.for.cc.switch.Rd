@@ -4,7 +4,7 @@
 \alias{check.for.cc.switch}
 \title{check.for.cc.switch}
 \usage{
-  probe_SNP_info$col_chan_switching <- apply(X=probe_SNP_info, MARGIN=1, FUN=check.for.cc.switch)
+  apply(X=probe_SNP_info, MARGIN=1, FUN=check.for.cc.switch)
 
 }
 \description{
