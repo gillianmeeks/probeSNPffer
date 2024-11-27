@@ -6,5 +6,5 @@
 
 }
 \description{
-Example manifest data object
+Example manifest data: 135 CpG probes and their probe information from the Infinium MethylationEPIC manifest.
 }
