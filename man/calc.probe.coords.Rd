@@ -4,7 +4,7 @@
 \alias{calc.probe.coords}
 \title{calc.probe.coords}
 \usage{
-  bed_file[,c("start", "end")] <- t(apply(X=manifest_anno_object, MARGIN=1, FUN=calc.probe.coords))
+  t(apply(X=manifest_anno_object, MARGIN=1, FUN=calc.probe.coords))
 
 }
 \description{
