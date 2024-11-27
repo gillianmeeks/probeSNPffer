@@ -9,9 +9,9 @@ check.for.cc.switch <- function(DAT) {
   if (type == 1) {
     if ((strand == '+' & distance == -1) | (strand == '-' & distance == 2)) {
       if ((ref == 'A' & alt == 'T') | (ref == 'T' & alt == 'A') | (ref == 'C' & alt == 'G') | (ref == 'G' & alt == 'C')) {
-        return(F)
+        return("not_cc_switch")
       } else {
-        return(T)
+        return("cc_switch")
       }
     } else {
       #added desginations for non-type 1 SBE SNPs
