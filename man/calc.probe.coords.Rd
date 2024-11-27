@@ -4,6 +4,7 @@
 \alias{calc.probe.coords}
 \title{calc.probe.coords}
 \usage{
+  calc.probe.coords(CpG_info[1,])
   t(apply(X=manifest_anno_object, MARGIN=1, FUN=calc.probe.coords))
 
 }
