@@ -1,6 +1,6 @@
 Package: probeSNPffer
 Title: Idenitifies SNPs overlapping methylation microarray probe sequences from population-specific BED file 
-Version: 0.99.0
+Version: 0.99.1
 Description: This R package identifies CpG probes in a DNA methylation array dataset that overlap with known SNPs, and calculate important metrics related to these probes. Our functions do this in two steps: First, `extract.probe.regions()` takes positional, strand, and technology type information about a set of CpG probes (i.e. derived from an Illumina DNA methylation array manifest) and returns the genomic coordinates of the entire probe region in [BED format (https://genome.ucsc.edu/FAQ/FAQformat.html). Second, `flag.overlap()` takes the BED file generated in the previous step, along with a BED file containing SNPs to be queried, and returns their intersection.
 License: Artistic-2.0
 Encoding: UTF-8
