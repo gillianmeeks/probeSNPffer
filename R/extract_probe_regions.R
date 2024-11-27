@@ -20,7 +20,7 @@ extract.probe.regions <- function(manifest_anno_object) {
   }
 
   # Recode chromosome information, if necessary
-  if (length(grep("chr", manifest_anno_object$chr, ignore.case=T)) > 0) {
+  if (length(grep("chr", manifest_anno_object$chr, ignore.case=TRUE)) > 0) {
     manifest_anno_object$chr <- gsub("chr", "", manifest_anno_object$chr, ignore.case=T)
   }
   # Recode probe type information, if necessary
