@@ -15,9 +15,9 @@ check.for.cc.switch <- function(DAT) {
       }
     } else {
       #added desginations for non-type 1 SBE SNPs
-      return("not SBE")
+      return("not_SBE")
     }
   } else {
-    return("not SBE")
+    return("not_SBE")
   }
 }
