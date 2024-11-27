@@ -6,5 +6,6 @@
 
 }
 \description{
-SNP_bed is an example data frame containing BED-formatted information for an exmaple subset of 1048 SNPs with Fst > .3 between African and European super-populations, as ascertained in the 1000 Genomes panel https://www.internationalgenome.org/category/phase-3/. 
+manifest_anno_object is an example manifest object that has been properly transformed. 
+The oject must have chr prefixes in the chromosome column, probes with no position information have been removed, strand designations are + and -, probe types are I and II, and column names must include CpG_id, chr, CpG_pos, strand, type.
 }
