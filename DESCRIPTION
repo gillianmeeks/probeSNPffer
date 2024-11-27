@@ -7,10 +7,6 @@ Encoding: UTF-8
 Authors@R: c(
         person("Shyamalika", "Gopalan", email = "shyamie@gmail.com", role="aut", comment = c(ORCID = "0000-0002-2608-8472")), 
         person("Gillian", "Meeks", email = "glmeeks@ucdavis.edu", role=c("aut","cre"), comment = c("0000-0002-8436-6514")))
-LinkingTo: S4Vectors, GenomicRanges
-Imports: 
-    GenomicRanges,
-    S4Vectors
 Depends: 
     R (>= 3.5.0), S4Vectors (>= 0.40.2), GenomicRanges (>= 1.54.1), BiocGenerics (>= 0.48.1)
 LazyData: true
