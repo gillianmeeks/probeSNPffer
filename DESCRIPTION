@@ -18,4 +18,4 @@ Suggests:
 VignetteBuilder: knitr
 biocViews: DNAMethylation, MethylationArray, Microarray, Annotation, Genetics 
 BugReports: https://github.com/gillianmeeks/probeSNPffer/issues
-URL: https://bioconductor.org/packages/probeSNPffer
+URL: https://github.com/gillianmeeks/probeSNPffer/R/
