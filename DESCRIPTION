@@ -6,10 +6,9 @@ License: Artistic-2.0
 Encoding: UTF-8
 Authors@R: c(
         person("Shyamalika", "Gopalan", email = "shyamie@gmail.com", role="aut", comment = c(ORCID = "0000-0002-2608-8472")), 
-        person("Gillian", "Meeks", email = "glmeeks@ucdavis.edu", role=c("aut","cre"), comment = c("0000-0002-8436-6514")))
+        person("Gillian", "Meeks", email = "glmeeks@ucdavis.edu", role=c("aut","cre"), comment = c(ORCID = "0000-0002-8436-6514")))
 Depends: 
-    R (>= 3.5.0), S4Vectors (>= 0.40.2), GenomicRanges (>= 1.54.1), BiocGenerics (>= 0.48.1)
-LazyData: true
+    R (>= 4.5.0), S4Vectors (>= 0.40.2), GenomicRanges (>= 1.54.1), BiocGenerics (>= 0.48.1)
 Suggests: 
     knitr,
     rmarkdown,
@@ -17,5 +16,6 @@ Suggests:
     dplyr,
     ggplot2
 VignetteBuilder: knitr
-biocViews: DNAMethylation, Microarray, Annotation, Genetics
+biocViews: DNAMethylation, MethylationArray, Microarray, Annotation, Genetics 
 BugReports: https://github.com/gillianmeeks/probeSNPffer/issues
+URL: https://bioconductor.org/packages/probeSNPffer
