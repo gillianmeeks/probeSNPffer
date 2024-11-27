@@ -78,11 +78,11 @@ Now, we want to identify SNPs that fall within the probe. For this vignette, we 
 knitr::kable(head(SNP_bed, 9)) 
 ```
 
-As you can see, this BED file contains the genomic locations of our SNP set, as well as rsID and population-specific allele frequency information. The BED file only needs to contain the SNP's chromosome and BED formatted positions (must be columns 1,2,3) and REF, ALT alleles (must be columns 5,6). Using this and the CpG probe BED file we generated in the previous step, we can extract all instances of overlap between SNPs and CpG probes using the following line of code. This function also checks for color-channel switching SNPs at the single base extension (SBE) position of Type 1 probes and will mark them as TRUE if the REF/ALT pair will bias measurements or FALSE if they do not bias measurements:
+As you can see, this BED file contains the genomic locations of our SNP set, as well as rsID and population-specific allele frequency information. The BED file only needs to contain the SNP's chromosome and BED formatted positions (must be columns 1,2,3) and REF, ALT alleles (must be columns 5,6). Using this and the CpG probe BED file we generated in the previous step, we can extract all instances of overlap between SNPs and CpG probes using the following line of code. This function also checks for color-channel switching SNPs at the single base extension (SBE) position of Type 1 probes and will mark them as "cc_switch" if the REF/ALT pair will bias measurements or "not_cc_switch" if they do not bias measurements. If the SNP is not a SBE SNP, this function witll mark the SNP as "not_SBE". SBE SNPs that are non color channel switching can be ignored and we drop these from the intersection dataframe.
 
 ```{r, fig.show='hold'}
 CpG_SNP_intersection <- flag.overlap(probe_bed = CpG_probe_bed, SNP_bed = SNP_bed[,1:6])
-CpG_SNP_intersection <- CpG_SNP_intersection[CpG_SNP_intersection$col_chan_switching!= FALSE,]
+CpG_SNP_intersection <- CpG_SNP_intersection[CpG_SNP_intersection$col_chan_switching!= "not_cc_switch",]
 ```
 
 
