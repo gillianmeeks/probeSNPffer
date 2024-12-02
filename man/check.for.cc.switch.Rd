@@ -9,6 +9,7 @@
 }
 \value{ a row of a CpG_SNP_intersection object.}
 \examples{ 
+data(CpG_SNP_intersection)
 DAT <- CpG_SNP_intersection[1,]
 check.for.cc.switch(DAT)
 }
