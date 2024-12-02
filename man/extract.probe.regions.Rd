@@ -2,7 +2,10 @@
 \alias{extract.probe.regions}
 \title{Extract BED-formatted CpG probe genomic coordinates}
 \usage{
-extract.probe.regions(manifest_anno_object)
+extract.probe.regions(CpG_info)
+}
+\arguments{
+  \item{CpG_info}{ a \link{CpG_info} object.}
 }
 \description{
 Takes positional, strand, and technology information about a set of CpG probes and return genomic coordinates of the probe region in BED format. Input manifest must be a dataframe with the exact columns: 'CpG_id', 'chr',
