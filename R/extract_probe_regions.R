@@ -21,7 +21,7 @@ extract.probe.regions <- function(CpG_info) {
 
   # Recode chromosome information, if necessary
   if (length(grep("chr", CpG_info$chr, ignore.case=TRUE)) > 0) {
-    CpG_info$chr <- gsub("chr", "", CpG_info$chr, ignore.case=T)
+    CpG_info$chr <- gsub("chr", "", CpG_info$chr, ignore.case=TRUE)
   }
   # Recode probe type information, if necessary
   if (length(grep("I", CpG_info$type)) > 0) {
