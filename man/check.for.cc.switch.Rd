@@ -2,9 +2,6 @@
 \alias{check.for.cc.switch}
 \title{check.for.cc.switch}
 \usage{
-  check.for.cc.switch(x)
-}
-\usage{
   check.for.cc.switch(DAT)
 }
 \arguments{
