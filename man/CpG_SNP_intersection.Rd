@@ -1,6 +1,7 @@
 \name{CpG_SNP_intersection}
+\docType{class}
 \alias{CpG_SNP_intersection}
-\title{CpG_SNP_intersection}
+\title{CpG_SNP_intersection objects}
 \usage{
   CpG_SNP_intersection
 }
