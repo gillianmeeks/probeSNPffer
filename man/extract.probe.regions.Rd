@@ -11,7 +11,6 @@ extract.probe.regions(CpG_info)
 }
 \examples{
 data(CpG_info)
-data(manifest_anno_object)
 extract.probe.regions(CpG_info)
 }
 \description{
