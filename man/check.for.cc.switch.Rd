@@ -5,10 +5,10 @@
   check.for.cc.switch(x)
 }
 \usage{
-  check.for.cc.switch(x)
+  check.for.cc.switch(DAT)
 }
 \arguments{
-  \item{x}{ a row of a \link{CpG_SNP_intersection} object that contains the overlapping probe SNP information.}
+  \item{DAT}{ a row of a \link{CpG_SNP_intersection} object that contains the overlapping probe SNP information.}
 }
 \description{
 Internal function to flag.overlap which checks for color-channel switching SNPs at the single base extension position for type 1 probes.
