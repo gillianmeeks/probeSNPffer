@@ -11,6 +11,7 @@
 A row of a manifest_anno_object.
 }
 \examples{
+data(manifest_anno_object)
 DAT <- manifest_anno_object[1,]
 calc.probe.coords(DAT)
 }
