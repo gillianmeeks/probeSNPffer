@@ -57,6 +57,8 @@ library(dplyr)
 library(ggplot2)
 data(CpG_info)
 data(SNP_bed)
+data(manifest_anno_object)
+data(CpG_SNP_intersection)
 knitr::kable(head(CpG_info,5)) 
 ```
 
