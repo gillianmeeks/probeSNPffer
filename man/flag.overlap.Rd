@@ -2,10 +2,10 @@
 \alias{flag.overlap}
 \title{Identifying probes that overlap SNPs}
 \usage{
-flag.overlap(CpG_probe_bed,SNP_bed)
+flag.overlap(probe_bed,SNP_bed)
 }
 \arguments{
-  \item{CpG_probe_bed}{ a \link{CpG_probe_bed} object that contains the CpG probe start and end coordinates (BED format).}
+  \item{probe_bed}{ a \link{CpG_probe_bed} object that contains the CpG probe start and end coordinates (BED format).}
   \item{SNP_bed}{ a \link{SNP_bed} object that contains the SNP start and end coordinates (BED format).}
 
 }
