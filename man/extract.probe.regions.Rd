@@ -10,6 +10,7 @@ extract.probe.regions(CpG_info)
 \value{A CpG_info object (manifest information).
 }
 \examples{
+data(CpG_info)
 extract.probe.regions(CpG_info)
 }
 \description{
