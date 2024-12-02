@@ -1,6 +1,7 @@
 \name{SNP_bed}
+\docType{class}
 \alias{SNP_bed}
-\title{SNP_bed}
+\title{SNP_bed ojects}
 \usage{
   SNP_bed
 
