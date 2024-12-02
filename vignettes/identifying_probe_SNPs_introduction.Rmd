@@ -63,7 +63,7 @@ knitr::kable(head(CpG_info,5))
 We can easily extract the genomic coordinates for the probes corresponding to these 135 CpG sites using the following code:
 
 ```{r, fig.show='hold'}
-CpG_probe_bed <- extract.probe.regions(manifest_anno_object = CpG_info)
+CpG_probe_bed <- extract.probe.regions(CpG_info)
 ```
 
 This results in a BED-formatted file that can be used for the next step:
