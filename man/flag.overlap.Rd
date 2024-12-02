@@ -14,6 +14,8 @@ For probe_bed : a BED formatted CpG_probe_bed object that contains CpG probe sta
 For SNP_bed : a BED formatted SNP_bed object that contain SNP start and end coordinates.
 }
 \examples{
+data(CpG_probe_bed)
+data(SNP_bed)
 flag.overlap(probe_bed=CpG_probe_bed,SNP_bed=SNP_bed)
 }
 \description{Provide the BED formatted CpG probe regions you created from the extract.probe.regions step and a BED formatted SNP data file to search for intersections of probe regions with the SNP coordintaes. SNP_bed is an example SNP BED file.
