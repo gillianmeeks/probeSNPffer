@@ -2,10 +2,10 @@
 \alias{calc.probe.coords}
 \title{calc.probe.coords}
 \usage{
-  calc.probe.coords(x)
+  calc.probe.coords(DAT)
 }
 \arguments{
-  \item{x}{ a row of a \link{manifest_anno_object} object that contains the CpG probe coordinate.}
+  \item{DAT}{ a row of a \link{manifest_anno_object} object that contains the CpG probe coordinate.}
 }
 \description{
 Internal function to extract.probe.regions which calculates the CpG probe region coordinates based on the strand and probe type, where manifest_anno_object is a correctly formated manifest object like CpG_info. 
