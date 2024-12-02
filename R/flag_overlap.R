@@ -3,10 +3,10 @@
 flag.overlap <- function(probe_bed, SNP_bed) {
   # Recode chromosome information, if necessary
   if (length(grep("chr", probe_bed[,1], ignore.case=TRUE)) > 0) {
-    probe_bed[,1] <- gsub("chr", "", probe_bed[,1], ignore.case=T)
+    probe_bed[,1] <- gsub("chr", "", probe_bed[,1], ignore.case=TRUE)
   }
   if (length(grep("chr", SNP_bed[,1], ignore.case=TRUE)) > 0) {
-    SNP_bed[,1] <- gsub("chr", "", SNP_bed[,1], ignore.case=T)
+    SNP_bed[,1] <- gsub("chr", "", SNP_bed[,1], ignore.case=TRUE)
   }
   # Convert bed files to GRange objects
   subject <- GenomicRanges::GRanges(seqnames=probe_bed$chr, ranges=IRanges::IRanges(start=probe_bed$start , end=probe_bed$end))
