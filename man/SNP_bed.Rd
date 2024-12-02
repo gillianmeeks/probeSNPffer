@@ -2,7 +2,7 @@
 \alias{SNP_bed}
 \title{SNP_bed}
 \usage{
-  data(SNP_bed)
+  SNP_bed
 
 }
 \description{
