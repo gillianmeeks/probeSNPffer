@@ -37,10 +37,10 @@ extract.probe.regions <- function(CpG_info) {
   }
   # Remove rows with no position information, if necessary
   if (length(which(is.na(CpG_info$CpG_pos))) > 0) {
-    manifest_anno_object <- CpG_info[-which(is.na(CpG_info$CpG_pos)),]
+    CpG_info <- CpG_info[-which(is.na(CpG_info$CpG_pos)),]
   }
-
-  # Add probe coordinates
+  manifest_anno_object <- CpG_info  ##transformed to proper column names, etc.
+  # Add probe coordinates  
   bed_file <- manifest_anno_object
   bed_file[,c("start", "end")] <- t(apply(X=manifest_anno_object, MARGIN=1, FUN=calc.probe.coords))
   bed_file <- bed_file[,c("chr","start","end","CpG_id","strand","type","CpG_pos")]
