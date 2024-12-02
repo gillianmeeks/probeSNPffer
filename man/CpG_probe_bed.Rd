@@ -2,7 +2,7 @@
 \alias{CpG_probe_bed}
 \title{CpG_probe_bed}
 \usage{
-  data(CpG_probe_bed)
+  CpG_probe_bed
 
 }
 \description{
