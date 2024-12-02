@@ -1,6 +1,7 @@
 \name{manifest_anno_object}
+\docType{class}
 \alias{manifest_anno_object}
-\title{manifest_anno_object}
+\title{manifest_anno_object objects}
 \usage{
   manifest_anno_object
 }
