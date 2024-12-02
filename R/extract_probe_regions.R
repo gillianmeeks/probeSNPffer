@@ -1,8 +1,8 @@
 #' test documentation for extract.probe.regions
 #' @export
-extract.probe.regions <- function(manifest_anno_object) {
+extract.probe.regions <- function(CpG_info) {
   # Check input
-  column_names <- colnames(manifest_anno_object)
+  column_names <- colnames(CpG_info)
   if (column_names[1] != "CpG_id") {
     stop("First column must be \"CpG_id\"")
   }
@@ -20,24 +20,24 @@ extract.probe.regions <- function(manifest_anno_object) {
   }
 
   # Recode chromosome information, if necessary
-  if (length(grep("chr", manifest_anno_object$chr, ignore.case=TRUE)) > 0) {
-    manifest_anno_object$chr <- gsub("chr", "", manifest_anno_object$chr, ignore.case=T)
+  if (length(grep("chr", CpG_info$chr, ignore.case=TRUE)) > 0) {
+    CpG_info$chr <- gsub("chr", "", CpG_info$chr, ignore.case=T)
   }
   # Recode probe type information, if necessary
-  if (length(grep("I", manifest_anno_object$type)) > 0) {
-    manifest_anno_object$type[manifest_anno_object$type=="I"] <- 1
-    manifest_anno_object$type[manifest_anno_object$type=="II"] <- 2
+  if (length(grep("I", CpG_info$type)) > 0) {
+    CpG_info$type[CpG_info$type=="I"] <- 1
+    CpG_info$type[CpG_info$type=="II"] <- 2
   }
   # Recode strand information, if necessary
-  if (length(grep("F", manifest_anno_object$strand)) > 0) {
-    manifest_anno_object$strand[manifest_anno_object$strand=="F"] <- '+'
+  if (length(grep("F", CpG_info$strand)) > 0) {
+    CpG_info$strand[CpG_info$strand=="F"] <- '+'
   }
-  if (length(grep("R", manifest_anno_object$strand)) > 0) {
-    manifest_anno_object$strand[manifest_anno_object$strand=="R"] <- '-'
+  if (length(grep("R", CpG_info$strand)) > 0) {
+    CpG_info$strand[CpG_info$strand=="R"] <- '-'
   }
   # Remove rows with no position information, if necessary
-  if (length(which(is.na(manifest_anno_object$CpG_pos))) > 0) {
-    manifest_anno_object <- manifest_anno_object[-which(is.na(manifest_anno_object$CpG_pos)),]
+  if (length(which(is.na(CpG_info$CpG_pos))) > 0) {
+    manifest_anno_object <- CpG_info[-which(is.na(CpG_info$CpG_pos)),]
   }
 
   # Add probe coordinates
