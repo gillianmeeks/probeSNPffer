@@ -8,7 +8,7 @@
   \item{DAT}{ a row of a \link{CpG_SNP_intersection} object that contains the overlapping probe SNP information.}
 }
 \value{ a row of a CpG_SNP_intersection object.}
-\examples { 
+\examples{ 
 DAT <- CpG_SNP_intersection[1,]
 check.for.cc.switch(DAT)
 }
