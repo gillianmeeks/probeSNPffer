@@ -2,7 +2,7 @@
 \alias{CpG_info}
 \title{CpG_info}
 \usage{
-  data(CpG_info)
+  CpG_info
 
 }
 \description{
