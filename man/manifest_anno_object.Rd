@@ -2,8 +2,7 @@
 \alias{manifest_anno_object}
 \title{manifest_anno_object}
 \usage{
-  data(manifest_anno_object)
-
+  manifest_anno_object
 }
 \description{
 manifest_anno_object is an example manifest object that has been properly transformed. 
