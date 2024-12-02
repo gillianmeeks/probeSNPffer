@@ -1,6 +1,7 @@
 \name{CpG_probe_bed}
 \alias{CpG_probe_bed}
-\title{CpG_probe_bed}
+\docType{class}
+\title{CpG_probe_bed objects}
 \usage{
   CpG_probe_bed
 
