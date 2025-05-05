@@ -57,8 +57,6 @@ data(CpG_info)
 data(SNP_bed)
 data(manifest_anno_object)
 data(CpG_SNP_intersection)
-
-```{r, echo=FALSE}
 knitr::kable(head(CpG_info,5)) 
 ```
 
@@ -70,7 +68,7 @@ CpG_probe_bed <- extract.probe.regions(CpG_info)
 
 This results in a BED-formatted file that can be used for the next step:
 
-```{r, echo=FALSE, results='asis'}
+```{r, results='asis'}
 knitr::kable(head(CpG_probe_bed, 5))
 ```
 
@@ -78,7 +76,7 @@ knitr::kable(head(CpG_probe_bed, 5))
 
 Now, we want to identify SNPs that fall within the probe. For this vignette, we are particularly interested in SNPs that are extremely differentiated between populations of European and West African genetic ancestry. The object `SNP_bed` is a data frame containing BED-formatted information for an example selection of SNPs with Fst > .3 between African and European super-populations, as ascertained in the [1000 Genomes panel](https://www.internationalgenome.org/category/phase-3/). This data frame looks like:
 
-```{r, echo=FALSE, results='asis'}
+```{r, results='asis'}
 knitr::kable(head(SNP_bed, 9)) 
 ```
 
@@ -89,19 +87,19 @@ CpG_SNP_intersection <- flag.overlap(probe_bed = CpG_probe_bed, SNP_bed = SNP_be
 CpG_SNP_intersection <- CpG_SNP_intersection[CpG_SNP_intersection$col_chan_switching!= "not_cc_switch",]
 ```
 
+We can add in more SNP information into our final intersection dataframe to look at the impact of SNPs on downstream analyses:
 
 ```{r, fig.show='hold', message=F}
-#intersect the CpG_SNP_intersection with other SNP information from the SNP bed file (Fst in our case)
+#intersect the CpG_SNP_intersection with other SNP information from the SNP bed file (Fst in this case)
 SNP_bed <- SNP_bed[order(SNP_bed$rsid),]
 CpG_SNP_intersection <- CpG_SNP_intersection[order(CpG_SNP_intersection$SNP_id),]
 CpG_SNP_intersection$fst <- SNP_bed[match(CpG_SNP_intersection$SNP_id, SNP_bed$rsid), "WEIR_AND_COCKERHAM_FST"]
 #changing SNP distance to absolute value for our analyses
 CpG_SNP_intersection$SNP_CpG_distance <- abs(CpG_SNP_intersection$SNP_CpG_distance)
 ```
-```{r, fig.show='hold', echo=F, message=F}
+```{r, fig.show='hold',message=F}
 knitr::kable(head(CpG_SNP_intersection)) 
 ```
-
 
 ```{r, fig.show='hold', message=F}
 #take the closest SNP to the CpG for CpGs with multiple SNPs
@@ -117,7 +115,6 @@ beta_geno_diff <- CpG_info_[match(CpG_SNP_intersection_dist$CpG_id, CpG_info_$Cp
 CpG_SNP_intersection_dist <- CpG_SNP_intersection_dist %>% add_column(beta_geno_diff)
 
 ```
-
 
 ## Example Analysis of CpG probe-SNP overlap: Distance Effects
 
