@@ -12,7 +12,7 @@ Authors: Gillian Meeks and Shyamalika Gopalan
 
 Install package:
 ```
-devtools::install_github("https://github.com/gillianmeeks/probeSNPffer",build_vignettes = TRUE)
+devtools::install_github("https://github.com/gillianmeeks/probeSNPffer",build_vignettes = TRUE, dependencies = TRUE)
 ```
 View vignette:
 
