@@ -80,7 +80,7 @@ Now, we want to identify SNPs that fall within the probe. For this vignette, we 
 knitr::kable(head(SNP_bed, 9)) 
 ```
 
-As you can see, this BED file contains the genomic locations of our SNP set, as well as rsID and population-specific allele frequency information. The BED file only needs to contain the SNP's chromosome and BED formatted positions (must be columns 1,2,3) and REF, ALT alleles (must be columns 5,6). Using this and the CpG probe BED file we generated in the previous step, we can extract all instances of overlap between SNPs and CpG probes using the following line of code. This function also checks for color-channel switching SNPs at the single base extension (SBE) position of Type 1 probes and will mark them as "cc_switch" if the REF/ALT pair will bias measurements or "not_cc_switch" if they do not bias measurements. If the SNP is not a SBE SNP, this function witll mark the SNP as "not_SBE". SBE SNPs that are non color channel switching can be ignored and we drop these from the intersection dataframe.
+As you can see, this BED file contains the genomic locations of our SNP set, as well as rsID and population-specific allele frequency information. The BED file only needs to contain the SNP's chromosome and BED formatted positions (must be columns 1,2,3) and REF, ALT alleles (must be columns 5,6). Using this and the CpG probe BED file we generated in the previous step, we can extract all instances of overlap between SNPs and CpG probes using the following line of code. This function also checks for color-channel switching SNPs at the single base extension (SBE) position of Type 1 probes and will mark them as "cc_switch" if the REF/ALT pair will bias measurements or "not_cc_switch" if they do not bias measurements. If the SNP is not a SBE SNP, this function will mark the SNP as "not_SBE". SBE SNPs that are non color channel switching can be ignored and we drop these from the intersection dataframe.
 
 ```{r, fig.show='hold'}
 CpG_SNP_intersection <- flag.overlap(probe_bed = CpG_probe_bed, SNP_bed = SNP_bed[,1:6])
@@ -89,23 +89,26 @@ CpG_SNP_intersection <- CpG_SNP_intersection[CpG_SNP_intersection$col_chan_switc
 
 
 ```{r, fig.show='hold', message=F}
-#intersect with other SNP information
+#intersect the CpG_SNP_intersection with other SNP information from the SNP bed file (Fst in our case)
 SNP_bed <- SNP_bed[order(SNP_bed$rsid),]
 CpG_SNP_intersection <- CpG_SNP_intersection[order(CpG_SNP_intersection$SNP_id),]
 CpG_SNP_intersection$fst <- SNP_bed[match(CpG_SNP_intersection$SNP_id, SNP_bed$rsid), "WEIR_AND_COCKERHAM_FST"]
+#changing SNP distance to absolute value for our analyses
 CpG_SNP_intersection$SNP_CpG_distance <- abs(CpG_SNP_intersection$SNP_CpG_distance)
+```
+```{r, fig.show='hold', echo=F, message=F}
 knitr::kable(head(CpG_SNP_intersection)) 
 ```
 
 
 ```{r, fig.show='hold', message=F}
-#take the closest SNP
+#take the closest SNP to the CpG for CpGs with multiple SNPs
 CpG_SNP_intersection_dist  <- CpG_SNP_intersection %>% group_by(CpG_id) %>% arrange(SNP_CpG_distance)%>% slice(1)
 #subset CpG_info to the probes with a SNP
 CpG_info_ <- CpG_info[CpG_info$CpG_id %in% CpG_SNP_intersection_dist$CpG_id,]
 CpG_info_ <- CpG_info_[order(CpG_info_$CpG_id),]
 CpG_SNP_intersection_dist <- CpG_SNP_intersection_dist[order(CpG_SNP_intersection_dist$CpG_id),]
-#grab the beta_geno_diff from CpG_info
+#grab the beta_geno_diff from CpG_info for the CpGs with SNPs (this is the difference in meQTL effect size between ancestries from Li et al. 2022).
 beta_geno_diff <- CpG_info_[match(CpG_SNP_intersection_dist$CpG_id, CpG_info_$CpG_id), "beta_diff"]
 #check order
 #all.equal(CpG_SNP_intersection_dist$CpG_id, CpG_info_$CpG_id)
