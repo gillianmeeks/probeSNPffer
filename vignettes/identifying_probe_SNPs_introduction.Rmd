@@ -88,8 +88,8 @@ CpG_SNP_intersection <- CpG_SNP_intersection[CpG_SNP_intersection$col_chan_switc
 ```
 
 
-```{r, echo=F, fig.show='hold', message=F}
-#intersect
+```{r, fig.show='hold', message=F}
+#intersect with other SNP information
 SNP_bed <- SNP_bed[order(SNP_bed$rsid),]
 CpG_SNP_intersection <- CpG_SNP_intersection[order(CpG_SNP_intersection$SNP_id),]
 CpG_SNP_intersection$fst <- SNP_bed[match(CpG_SNP_intersection$SNP_id, SNP_bed$rsid), "WEIR_AND_COCKERHAM_FST"]
@@ -98,7 +98,7 @@ knitr::kable(head(CpG_SNP_intersection))
 ```
 
 
-```{r, echo=F, fig.show='hold', message=F}
+```{r, fig.show='hold', message=F}
 #take the closest SNP
 CpG_SNP_intersection_dist  <- CpG_SNP_intersection %>% group_by(CpG_id) %>% arrange(SNP_CpG_distance)%>% slice(1)
 #subset CpG_info to the probes with a SNP
@@ -118,7 +118,7 @@ CpG_SNP_intersection_dist <- CpG_SNP_intersection_dist %>% add_column(beta_geno_
 
 Now we have the data we need to evaluate the extent to which these SNPs in CpG probe sequences are biasing the results of the local ancestry-specific meQTL analysis in Li et al. Here we plot the impact of probe SNP distance on delta effect size for this subset of SNPs.
 
-```{r, fig.show='hold', echo=F}
+```{r, fig.show='hold'}
 dist_lims = range(CpG_SNP_intersection_dist$SNP_CpG_distance)
 dist_grid = seq(from = min(dist_lims), to=max(dist_lims))
 model <- lm(beta_geno_diff ~ SNP_CpG_distance, data=CpG_SNP_intersection_dist)
@@ -141,7 +141,7 @@ ggplot() +
 
 Here we also plot the impact of probe SNP Fst on delta effect size, using the highest Fst SNP for probes with multiple SNPs.
 
-```{r, fig.show='hold', echo=F}
+```{r, fig.show='hold'}
 #take the highest fst snp for probes with multiple SNPs
 CpG_SNP_intersection_fst  <- CpG_SNP_intersection %>% group_by(CpG_id) %>% arrange(desc(fst)) %>% slice(1)
 CpG_info_ <- CpG_info[CpG_info$CpG_id %in% CpG_SNP_intersection_fst$CpG_id,]
@@ -155,7 +155,7 @@ CpG_SNP_intersection_fst <- CpG_SNP_intersection_fst %>% add_column(beta_geno_di
 ```
 
 
-```{r, fig.show='hold', echo=F}
+```{r, fig.show='hold'}
 fst_lims = range(CpG_SNP_intersection_fst$fst)
 fst_grid = seq(0.3,0.8,0.1)
 model <- lm(beta_geno_diff ~ fst, data=CpG_SNP_intersection_fst)
