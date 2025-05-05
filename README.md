@@ -12,9 +12,8 @@ Authors: Gillian Meeks and Shyamalika Gopalan
 
 Install package:
 ```
-if (!require("BiocManager"))
-    install.packages("BiocManager")
-BiocManager::install("probeSNPffer")
+git clone https://github.com/gillianmeeks/probeSNPffer/
+
 ```
 View vignette html once in R:
 
