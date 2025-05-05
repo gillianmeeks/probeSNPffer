@@ -46,7 +46,7 @@ Our function require this data frame to have these exact column names in this ex
 4. **'strand'** (i.e. '+' or 'F' in the case of the forward strand; '-' or 'R' in case of the reverse strand)
 5. **'type'** (i.e. 'I' or 1 in case of Type 1 probes; 'II' or 2 in the case of Type 2 probes)
 
-Additional columns (6 and beyond) can also be included containing metadata, such as, in our case, the difference in ancestry-specific effect size (**'beta_diff'**). `CpG info` contains information for the 135 CpG probes corresponding to the ancestry-specific meQTL identified by Li et al., and reported in their Supplementary Data 8. The largest effect size difference (beta_diff) was taken for probes associated with multiple ancestry-specific meQTL. This data frame is previewed below:
+Additional columns (6 and beyond) can also be included containing metadata, such as, in our case, the difference in ancestry-specific effect size (**'beta_diff'**). `CpG_info` contains information for the 135 CpG probes corresponding to the ancestry-specific meQTL identified by Li et al., and reported in their Supplementary Data 8. The largest effect size difference (beta_diff) was taken for probes associated with multiple ancestry-specific meQTL. This data frame is previewed below:
 
 ```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
 library(probeSNPffer)
