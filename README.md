@@ -14,7 +14,7 @@ Install package:
 ```
 devtools::install_github("https://github.com/gillianmeeks/probeSNPffer",build_vignettes = TRUE)
 ```
-View vignette html once in R:
+View vignette:
 
 ```
 library(probeSNPffer)
