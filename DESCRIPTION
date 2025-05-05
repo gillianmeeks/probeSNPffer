@@ -8,7 +8,7 @@ Authors@R: c(
         person("Shyamalika", "Gopalan", email = "shyamie@gmail.com", role="aut", comment = c(ORCID = "0000-0002-2608-8472")), 
         person("Gillian", "Meeks", email = "glmeeks@ucdavis.edu", role=c("aut","cre"), comment = c(ORCID = "0000-0002-8436-6514")))
 Depends: 
-    R (>= 4.4.0), S4Vectors (>= 0.40.2), GenomicRanges (>= 1.54.1), BiocGenerics (>= 0.48.1), IRanges (>= 2.41.1)
+    R (>= 4.4.0), S4Vectors (>= 0.40.2), GenomicRanges (>= 1.54.1), BiocGenerics (>= 0.48.1), IRanges (>= 2.40.1)
 Suggests: 
     knitr,
     rmarkdown,
