@@ -13,7 +13,7 @@ Authors: Gillian Meeks and Shyamalika Gopalan
 Install package:
 ```
 git clone https://github.com/gillianmeeks/probeSNPffer/
-
+R CMD install probeSNPffer
 ```
 View vignette html once in R:
 
