@@ -48,7 +48,7 @@ Our function require this data frame to have these exact column names in this ex
 
 Additional columns (6 and beyond) can also be included containing metadata, such as, in our case, the difference in ancestry-specific effect size (**'beta_diff'**). `CpG_info` contains information for the 135 CpG probes corresponding to the ancestry-specific meQTL identified by Li et al., and reported in their Supplementary Data 8. The largest effect size difference (beta_diff) was taken for probes associated with multiple ancestry-specific meQTL. This data frame is previewed below:
 
-```{r, echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+```{r, echo=TRUE, results='asis', warning=FALSE, message=FALSE}
 library(probeSNPffer)
 library(tibble)
 library(dplyr)
@@ -57,6 +57,8 @@ data(CpG_info)
 data(SNP_bed)
 data(manifest_anno_object)
 data(CpG_SNP_intersection)
+
+```{r, echo=FALSE}
 knitr::kable(head(CpG_info,5)) 
 ```
 
