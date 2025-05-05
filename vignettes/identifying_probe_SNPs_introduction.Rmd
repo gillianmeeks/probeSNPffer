@@ -17,14 +17,12 @@ knitr::opts_chunk$set(
 )
 ```
 ## Installation
-probeSNPffer is available at [https://bioconductor.org](https://bioconductor.org) and can be
-installed via:
+probeSNPffer is available at https://github.com/gillianmeeks/probeSNPffer and can be
+installed via devtools:
 
-```{r BiocManager, eval=FALSE}
-if (!require("BiocManager"))
-    install.packages("BiocManager")
-BiocManager::install("probeSNPffer")
-library(probeSNPffer)
+```{r, eval=FALSE}
+devtools::install_github("https://github.com/gillianmeeks/probeSNPffer",build_vignettes = TRUE)
+
 ```
 
 ## Introduction
