@@ -110,8 +110,6 @@ CpG_info_ <- CpG_info_[order(CpG_info_$CpG_id),]
 CpG_SNP_intersection_dist <- CpG_SNP_intersection_dist[order(CpG_SNP_intersection_dist$CpG_id),]
 #grab the beta_geno_diff from CpG_info for the CpGs with SNPs (this is the difference in meQTL effect size between ancestries from Li et al. 2022).
 beta_geno_diff <- CpG_info_[match(CpG_SNP_intersection_dist$CpG_id, CpG_info_$CpG_id), "beta_diff"]
-#check order
-#all.equal(CpG_SNP_intersection_dist$CpG_id, CpG_info_$CpG_id)
 CpG_SNP_intersection_dist <- CpG_SNP_intersection_dist %>% add_column(beta_geno_diff)
 
 ```
@@ -141,7 +139,7 @@ ggplot() +
 
 ## Fst effects 
 
-Here we also plot the impact of probe SNP Fst on delta effect size, using the highest Fst SNP for probes with multiple SNPs.
+Here we also plot the impact of probe SNP Fst on delta effect size, using the highest Fst SNP for probes with multiple SNPs. Interestingly, it seems that for these highly differentiated SNPs, distance to the probe induces a much largest bias than Fst.
 
 ```{r, fig.show='hold'}
 #take the highest fst snp for probes with multiple SNPs
@@ -151,8 +149,6 @@ CpG_info_ <- CpG_info_[order(CpG_info_$CpG_id),]
 CpG_SNP_intersection_fst <- CpG_SNP_intersection_fst[order(CpG_SNP_intersection_fst$CpG_id),]
 #take beta_geno_diff
 beta_geno_diff <- CpG_info_[match(CpG_info_$CpG_id, CpG_SNP_intersection_fst$CpG_id), "beta_diff"]
-#check order
-#all.equal(CpG_SNP_intersection_dist$CpG_id, CpG_info_$CpG_id)
 CpG_SNP_intersection_fst <- CpG_SNP_intersection_fst %>% add_column(beta_geno_diff)
 ```
 
